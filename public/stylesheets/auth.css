@@ -1,0 +1,38 @@
+.navbar-default{
+    background-color:  black;
+    color: white;
+}
+
+.navbar-default .navbar-brand{
+    color: white;
+}
+
+.navbar-default .navbar-brand:hover{
+    color: bisque;
+}
+
+.navbar-default .navbar-nav>li>a{
+    color: white;
+}
+
+.navbar-default .navbar-nav>li>a:hover{
+    color: bisque;
+}
+
+body{
+    color: black;
+    font-family: 'Inconsolata', monospace;
+}
+
+a:hover{
+    color: darkgray;
+}
+
+
+.delete{
+    display:inline;
+}
+
+.caption-full{
+    margin: 0 2rem;
+}

@@ -1,0 +1,53 @@
+<% include ../../partials/header %>
+<div class="container">
+    <div class="row">
+        <div class="thumbnail show">
+            <div class="caption-full">
+                <h4><a><%=ques.name%></a></h4>
+                <h2><strong><%=ques.question%></strong></h2>
+                <p><h4><%= ques.description %></h4></p>
+                <em class="pull-right"><h5>Submitted By: <%= ques.author.username %></h5></em>
+                <% if(currentUser && ques.author.id.equals(currentUser.id)){ %>   
+                <a href="/portal/questionnaire/<%=ques.id%>/edit" class="btn btn-warning">Edit</a>
+                <% } %> 
+                <% if(currentUser.isAdmin){ %>
+                <form class="delete" action="/portal/questionnaire/<%=ques.id%>/verify?_method=PUT" method="POST">
+                    <button class="btn btn-warning">Verify</button>
+                </form> 
+                <% } %>
+                <% if((currentUser && ques.author.id.equals(currentUser.id)) || currentUser.isAdmin){ %>
+                    <form class="delete" action="/portal/questionnaire/<%=ques.id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger">Delete</button>
+                    </form> 
+                <% } %>  
+            </div>
+        </div>
+            <div class="well">
+                <div class="text-left">
+                    <a class="btn btn-success" href="/portal/questionnaire/<%= ques._id %>/replies/new">Add New Reply</a>
+                </div>
+                <hr>
+                <% ques.replies.forEach(function(comment){ %>
+                    <div class="row" style="font-size: 2rem;">
+                        <div class="col-md-12">
+                            <strong><%= comment.author.username %></strong>
+                            <span class="pull-right"><% comment.date %></span>
+                            <p>
+                                <%= comment.text %> 
+                            </p>
+                         <% if(currentUser && comment.author.id.equals(currentUser.id)){ %>   
+                            <a class="btn btn-xs btn-warning" href="/portal/questionnaire/<%=ques.id%>/replies/<%=comment.id%>/edit">
+                                Edit
+                            </a>
+                            <form class="delete" action="/portal/questionnaire/<%=ques.id%>/replies/<%=comment.id%>?_method=DELETE" method="POST">
+                                <button class="btn btn-danger btn-xs">Delete</button>
+                            </form>
+                          <%  } %>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+
+<% include ../../partials/footer %>

@@ -1,0 +1,27 @@
+<% include ../partials/header %>
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+        <h1>Contact Details</h1>
+        <p>View contact details of the users.</p>
+        </div>
+     </header>   
+    <div class="row text-center" style="display:flex; flex-wrap:wrap;">
+        <% user.forEach(function(user){ %>
+            <div class="col-lg-4 col-sm-6 thumbnail" style="text-align: center;">
+                <div class="caption">
+                    <h2><a><%= user.name %></a></h2>
+                </div>
+                <div style="font-size: 2rem;">
+                    <strong>Email:</strong><p><%= user.email %></p>
+                </div>
+                <div style="font-size: 2rem;">
+                    <strong>Batch:</strong><p><%= user.batch %></p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+
+</div>
+
+<% include ../partials/footer %>

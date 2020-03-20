@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+<div class="container">
+        <header class="jumbotron">
+            <div class="container">
+                <h1 class="display-4">Welcome to AlumniPortal</h1>
+                <p class="lead">Ask relevant questions to your seniors and also view their contact details.</p>
+            </div>
+        </header>
+    </div>
+<% if(currentUser.isAdmin){ %>
+    <div class="col-lg-5 col-sm-6 thumbnail" style="text-align: center;margin-left: 10.5rem;">
+        <div class="caption">
+            <h3><a>Verification</a></h3>
+            </div>
+            <p>Verify the questions submitted by the users.</p>
+            <p>
+                <a href="/portal/questionnaire" class="btn btn-primary">View questions</a>
+            </p>
+    </div>
+        
+<% } else { %>
+    <div class="col-lg-5 col-sm-6 thumbnail" style="text-align: center;margin-left: 10.5rem;">
+            <div class="caption">
+                <h3><a>Questions</a></h3>
+                </div>
+                <p>Ask and view questions posted by other users.</p>
+                <p>
+                    <a href="/portal/questionnaire" class="btn btn-primary">View questions</a>
+                </p>
+    </div>
+<%  }  %>
+    <div class="col-lg-5 col-sm-6 thumbnail" style="text-align: center;margin-left: 2rem;">
+        <div class="caption">
+            <h3><a>Contact Details</a></h3>
+        </div>
+        <p>View contact details of other users</p>
+        <p>
+            <a href="/portal/contact_details" class="btn btn-primary">View Users</a>
+        </p>
+    </div>

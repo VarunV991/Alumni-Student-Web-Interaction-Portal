@@ -1,0 +1,30 @@
+<% include ../../partials/header %>
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+        <h1>Question Space</h1>
+        <p>View all the questions asked by your peers</p>
+        <p>
+            <a class="btn btn-primary btn-lg" href="/portal/questionnaire/new">Add New Question</a>
+        </p>
+        </div>
+     </header>   
+    <div class="row text-center" style="display:flex; flex-wrap:wrap;">
+        <% ques.forEach(function(ques){ %>
+            <% if(ques.isVerified || currentUser.isAdmin){ %>
+            <div class="col-lg-4 col-sm-6 thumbnail">
+                <div class="caption">
+                    <h3><a><%= ques.name %></a></h3>
+                    <h4><strong><%= ques.question %></strong></h4>
+                </div>
+                <p>
+                    <a href="/portal/questionnaire/<%= ques._id%>" class="btn btn-primary">View Answers</a>
+                </p>
+            </div>
+            <% } %>
+        <% }); %>
+    </div>
+
+</div>
+
+<% include ../../partials/footer %>
