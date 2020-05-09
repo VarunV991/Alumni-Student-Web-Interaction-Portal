@@ -9,7 +9,7 @@ var LocalStrategy=require("passport-local");
 var User = require("./models/user");
 
 // mongoose.connect("mongodb://localhost/alumniport",{useNewUrlParser: true});
-mongoose.connect("mongodb+srv://varunv:A3zTC4kuG8f2hE3G@cluster0-sbojk.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true},{ useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://varunv:A3zTC4kuG8f2hE3G@cluster0-sbojk.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true,useUnifiedTopology: true});
 
 
 app.set("view engine","ejs");
@@ -41,6 +41,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 passport.use(new LocalStrategy(User.authenticate()));
 
-app.listen(3001,process.env.IP,function(){
+app.listen(process.env.PORT,process.env.IP,function(){
     console.log("AlumniPortal has started");
 })
