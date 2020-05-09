@@ -1,7 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-var flash=require("connect-flash");
+var flash=require("express-flash");
 var methodOverride =require("method-override")
 var app = express();
 var passport=require("passport");
@@ -18,6 +18,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.use(flash());
 
+app.use(function(req,res,next){                 //adding our own middleware so that currentUser is
+    res.locals.currentUser=req.user;            //passed to every route
+    res.locals.error=req.flash("error")
+    res.locals.success=req.flash("success");
+    next();
+})
 var authRoutes=require("./routes/index");
 app.use(authRoutes);
 //PASSPORT 
@@ -30,12 +36,7 @@ app.use(require("express-session")({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(function(req,res,next){                 //adding our own middleware so that currentUser is
-    res.locals.currentUser=req.user;            //passed to every route
-    res.locals.error=req.flash("error")
-    res.locals.success=req.flash("success");
-    next();
-})
+
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
