@@ -7,10 +7,10 @@ Each question undergoes moderation process before getting published.
 
 <h2> Demo Version </h2>
 
-<a href="https://rocky-springs-35716.herokuapp.com/">Alumni Portal</a>
-For Demo Purpose:
-Username: admin
-Password: admin
+<a href="https://rocky-springs-35716.herokuapp.com/">Alumni Portal</a><br>
+For Demo Purpose:<br>
+* Username: admin
+* Password: admin
 
 <h2> Stack Used </h2>
 
