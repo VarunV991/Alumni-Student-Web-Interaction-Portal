@@ -13,7 +13,7 @@ Each question undergoes moderation process before getting published.
 
 * Express
 * NodeJS
-* MongoDB
+* MongoDB (For Deployment purpose: mLab has been used)
 
 ## Available Scripts
 
