@@ -1,4 +1,4 @@
-# Alumni-Student-Web-Interaction-Portal
+# Alumni Student Web Interaction Portal
 
 Welcome to Alumni Portal!
 This is portal is designed with intention to help juniors regarding the queries which they may have. 
