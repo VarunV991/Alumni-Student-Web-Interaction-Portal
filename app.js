@@ -9,17 +9,17 @@ var LocalStrategy=require("passport-local");
 var User = require("./models/user");
 
 // mongoose.connect("mongodb://localhost/alumniport",{useNewUrlParser: true});
-mongoose.connect("mongodb+srv://varunv:A3zTC4kuG8f2hE3G@cluster0-sbojk.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true});
+mongoose.connect("mongodb+srv://varunv:A3zTC4kuG8f2hE3G@cluster0-sbojk.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true},{ useUnifiedTopology: true });
 
 
 app.set("view engine","ejs");
-app.use(express.static("public"));
+app.use(express.static("./public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.use(flash());
 
 var authRoutes=require("./routes/index");
-
+app.use(authRoutes);
 //PASSPORT 
 
 app.use(require("express-session")({
@@ -36,8 +36,6 @@ app.use(function(req,res,next){                 //adding our own middleware so t
     res.locals.success=req.flash("success");
     next();
 })
-
-app.use(authRoutes);
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
