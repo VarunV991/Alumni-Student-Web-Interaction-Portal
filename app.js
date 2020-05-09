@@ -8,7 +8,9 @@ var passport=require("passport");
 var LocalStrategy=require("passport-local");
 var User = require("./models/user");
 
-mongoose.connect("mongodb://localhost/alumniport",{useNewUrlParser: true});
+// mongoose.connect("mongodb://localhost/alumniport",{useNewUrlParser: true});
+mongoose.connect("mongodb+srv://varunv:A3zTC4kuG8f2hE3G@cluster0-sbojk.mongodb.net/test?retryWrites=true&w=majority",{useNewUrlParser: true});
+
 
 app.set("view engine","ejs");
 app.use(express.static("public"));
