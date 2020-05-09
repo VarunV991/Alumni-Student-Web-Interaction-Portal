@@ -15,7 +15,7 @@ router.get("/",function(req,res){
 
 //Display new user register form
 router.get("/register",function(req,res){
-    res.render("register",{currentUser:null});
+    res.render("register");
 })
 
 //Register new user
@@ -24,7 +24,7 @@ router.post("/register",function(req,res){
     User.register(newUser,req.body.password,function(err,user){
         if(err){
             req.flash("error",err.message);
-            res.redirect("register",{currentUser:null});
+            res.redirect("register");
         }
         passport.authenticate("local")(req,res,function(){
             req.flash("success","Registered Successfully, "+user.username);
@@ -35,7 +35,7 @@ router.post("/register",function(req,res){
 
 //Display login page
 router.get("/login",function(req,res){
-    res.render("login",{currentUser:null});
+    res.render("login");
 })
 
 
@@ -55,7 +55,7 @@ router.get("/logout",function(req,res){
 })
 
 router.get("/portal",middleware.isLoggedIn,function(req,res){
-    res.render("portal/index",{currentUser:null});
+    res.render("portal/index");
 })
 
 router.get("/portal/verify",middleware.isLoggedIn,function(req,res){
@@ -64,7 +64,7 @@ router.get("/portal/verify",middleware.isLoggedIn,function(req,res){
             console.log("Oops");
         }
         else{
-            res.render("portal/verify",{user:user , currentUser:req.user});
+            res.render("portal/verify",{user:user});
         }
     })
 })
@@ -77,13 +77,13 @@ router.get("/portal/questionnaire",middleware.isLoggedIn,function(req,res){
             console.log("Oops");
         }
         else{
-            res.render("portal/questionnaire/index",{ques:question , currentUser:req.user});
+            res.render("portal/questionnaire/index",{ques:question});
         }
     })
 })
 
 router.get("/portal/questionnaire/new",middleware.isLoggedIn,function(req,res){
-    res.render("portal/questionnaire/new",{ currentUser:req.user});
+    res.render("portal/questionnaire/new",);
 })
 
 //Add a new question
@@ -109,7 +109,7 @@ router.post("/portal/questionnaire",middleware.isLoggedIn,function(req,res){
         }
         else{
             req.flash("success","Question will be verified and added soon.");
-            res.redirect("/portal/questionnaire",{ currentUser:req.user});
+            res.redirect("/portal/questionnaire",);
         }
     });
 })
@@ -121,7 +121,7 @@ router.get("/portal/questionnaire/:id",function(req,res){
             console.log("Oops")
         }
         else{
-            res.render("portal/questionnaire/show",{ques:foundQues,currentUser:req.user});
+            res.render("portal/questionnaire/show",{ques:foundQues});
         }
     })
 })
@@ -134,7 +134,7 @@ router.get("/portal/questionnaire/:id/edit",middleware.checkQuesPermission,funct
             res.redirect("/portal/questionnaire"); 
         }
         else{
-            res.render("portal/questionnaire/edit",{ques:foundQues,currentUser:req.user});
+            res.render("portal/questionnaire/edit",{ques:foundQues});
         }    
     })
 })
